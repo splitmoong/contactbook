@@ -2,7 +2,9 @@ from tkinter import *
 from tkinter import filedialog
 from tkinter import ttk
 import json
-from PIL import Image, ImageTk, ExifTags
+from PIL import Image, ImageTk
+from tkinter.font import Font
+
 
 
 class Contact:
@@ -158,14 +160,16 @@ def delete_contact():
                 current_contact = current_contact.next
 
 
-name_label = Label(root, text="Name:", pady=5)
-name_entry = Entry(root, width=27)
-number_label = Label(root, text="Number:", pady=5)
-number_entry = Entry(root, width=27)
-email_label = Label(root, text="Email:", pady=5)
-email_entry = Entry(root, width=27)
-org_label = Label(root, text="Organization:", pady=5)
-org_entry = Entry(root, width=27)
+custom_font = Font(family="Helvetica", size=12)
+
+name_label = Label(root, text="Name:", pady=5, font="Caveat 15")
+name_entry = Entry(root, width=15, font="Caveat 15")
+number_label = Label(root, text="Number:", pady=5, font="Caveat 15")
+number_entry = Entry(root, width=15, font="Caveat 15")
+email_label = Label(root, text="Email:", pady=5, font="Caveat 15")
+email_entry = Entry(root, width=15, font="Caveat 15")
+org_label = Label(root, text="Organization:", pady=5, font="Caveat 15")
+org_entry = Entry(root, width=15, font="Caveat 15")
 contact_listbox = Listbox(root)
 search_entry = Entry(root)
 
@@ -202,7 +206,7 @@ def load_contacts():
 
 load_contacts()
 
-root.geometry('330x590')
+root.geometry('330x610')
 root.title("Contact List")
 root.attributes('-alpha', 0.95)
 root.resizable(False, False)
