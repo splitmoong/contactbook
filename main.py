@@ -177,10 +177,8 @@ email_label.grid(row=2, column=0, padx=10, pady=7, sticky='w')
 email_entry.grid(row=2, column=1, padx=10, pady=10)
 org_label.grid(row=3, column=0, padx=10, pady=7, sticky='w')
 org_entry.grid(row=3, column=1, padx=10, pady=10)
-contact_listbox.grid(row=5, column=0,pady=10, padx=(10, 10),  columnspan=2, sticky="nsew",)
-search_entry.grid(row=6, column=0, padx=(10,10), pady=10, sticky='e')
-delete_button = Button(root, text="Delete", command=delete_contact)
-delete_button.grid(row=5, column=1)
+contact_listbox.grid(row=5, column=0, pady=10, padx=(10, 10), columnspan=2, sticky="nsew", )
+search_entry.grid(row=6, column=0, padx=(10, 10), pady=10, sticky='e')
 
 # Bind the display_contacts function to the listbox selection event
 contact_listbox.bind('<<ListboxSelect>>', display_contacts)
@@ -315,6 +313,42 @@ def all_on_click(event):
 display_all_button.bind("<Enter>", all_on_hover)
 display_all_button.bind("<Leave>", all_on_leave)
 display_all_button.bind("<Button-1>", all_on_click)
+
+# DELETE BUTTON UI
+
+button_delete_inactive = Image.open(
+    'design\\delete_button_nohover.png')
+button_delete_inactive_nohover = ImageTk.PhotoImage(button_delete_inactive)
+
+button_delete_active = Image.open(
+    'design\\delete_button_hover.png')
+button_delete_active_hover = ImageTk.PhotoImage(button_delete_active)
+
+button_delete_click = Image.open(
+    'design\\delete_button_clicked.png')
+button_delete_onclick = ImageTk.PhotoImage(button_delete_click)
+delete_button = Button(root, text="Delete", command=delete_contact,
+                       image=button_delete_inactive_nohover, bd=0,
+                       relief="sunken", pady=10, background='white')
+delete_button.grid(row=5, column=1, columnspan=2)
+
+
+def delete_on_hover(event):
+    delete_button.config(image=button_delete_active_hover)
+
+
+def delete_on_leave(event):
+    delete_button.config(image=button_delete_inactive_nohover)
+
+
+def delete_on_click(event):
+    # Change the image or perform any action you want on button click
+    delete_button.config(image=button_delete_onclick)
+
+
+delete_button.bind("<Enter>", delete_on_hover)
+delete_button.bind("<Leave>", delete_on_leave)
+delete_button.bind("<Button-1>", delete_on_click)
 
 style = ttk.Style()
 style.configure("TButton", relief="sunken")
